@@ -7,6 +7,7 @@ import { name as appName } from './app.json';
 import App from './src/App';
 import HomeScreen from './src/screens/HomeScreen';
 import LoginScreen from './src/screens/LoginScreen';
+import WelcomeScreen from './src/screens/WelcomeScreen';
 
 const theme = {
   ...DefaultTheme,
@@ -25,6 +26,7 @@ export default function Main() {
       <PaperProvider theme={theme}>
         <Stack.Navigator initialRouteName="App">
           <Stack.Screen name="App" component={App} />
+          <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
         </Stack.Navigator>
