@@ -1,8 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { Button, Text, TextInput, Divider } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 export default function LoginScreen() {
+
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -15,22 +19,22 @@ export default function LoginScreen() {
         style={styles.input}
       />
       <Divider style={styles.divider}></Divider>
-      <Button mode="contained" style={styles.button} onPress={() => console.log('Continue with Google')}>
+      <Button mode="contained" style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
         <Text>
           Continue with Google
         </Text>
       </Button>
-      <Button mode="contained" style={styles.button} onPress={() => console.log('Continue with Facebook')}>
+      <Button mode="contained" style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
         <Text>
           Continue with Facebook
         </Text>
       </Button>
-      <Button mode="contained" style={styles.button} onPress={() => console.log('Continue with Apple')}>
+      <Button mode="contained" style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
         <Text>
           Continue with Apple
         </Text>
       </Button>
-      <TouchableOpacity onPress={() => console.log('Sign Up')}>
+      <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
         <Text style={styles.signupText}>Don't have an account? Sign up</Text>
       </TouchableOpacity>
     </View>

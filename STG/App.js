@@ -26,9 +26,14 @@ export default function Main() {
       <PaperProvider theme={theme}>
         <Stack.Navigator initialRouteName="App">
           <Stack.Screen name="App" component={App} />
+
+          {/* Authentication Screens */}
           <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-          <Stack.Screen name="HomeScreen" component={HomeScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen name="SignUpScreen" component={LoginScreen} />
+
+          {/* Main Screens */}
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
         </Stack.Navigator>
       </PaperProvider>
     </NavigationContainer>
