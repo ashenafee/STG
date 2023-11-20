@@ -1,11 +1,16 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { Button, Text, TextInput, Divider } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import { LoginContext } from '../contexts/AppContext';
 
-export default function LoginScreen() {
+function LoginScreen({ navigation }) {
 
-  const navigation = useNavigation();
+  const loginHandler = useContext(LoginContext);
+
+  const handleLogin = () => {
+    loginHandler(true);
+  }
 
   return (
     <View style={styles.container}>
@@ -19,17 +24,17 @@ export default function LoginScreen() {
         style={styles.input}
       />
       <Divider style={styles.divider}></Divider>
-      <Button mode="contained" style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
+      <Button mode="contained" style={styles.button} onPress={handleLogin}>
         <Text>
           Continue with Google
         </Text>
       </Button>
-      <Button mode="contained" style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
+      <Button mode="contained" style={styles.button} onPress={handleLogin}>
         <Text>
           Continue with Facebook
         </Text>
       </Button>
-      <Button mode="contained" style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
+      <Button mode="contained" style={styles.button} onPress={handleLogin}>
         <Text>
           Continue with Apple
         </Text>
@@ -66,3 +71,5 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
 });
+
+export default LoginScreen;

@@ -1,8 +1,11 @@
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button, BottomNavigation } from 'react-native-paper';
-import * as React from 'react';
+import { useContext } from 'react';
+
+import { LoginContext } from '../contexts/AppContext';
 
 
 const HomeRoute = () => <Text>Home</Text>;
@@ -19,6 +22,8 @@ export default function HomeScreen() {
     { key: 'account', title: 'Account', focusedIcon: 'account', unfocusedIcon: 'account-outline' },
   ]);
 
+  const loginHandler = useContext(LoginContext);
+
   const renderScene = BottomNavigation.SceneMap({
     home: HomeRoute,
     activity: ActivityRoute,
@@ -26,12 +31,23 @@ export default function HomeScreen() {
     account: AccountRoute,
   });
 
+  const handleLogOut = () => {
+    loginHandler(false);
+  }
+
   return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
+    <>
+      <Button onPress={handleLogOut}>
+        <Text>
+            Log out
+          </Text>
+      </Button>
+      <BottomNavigation
+        navigationState={{ index, routes }}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+      />
+    </>
   );
 }
 
