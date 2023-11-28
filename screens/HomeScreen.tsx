@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useState } from 'react';
 import { Text, View, Image, Pressable, ScrollView } from 'react-native'
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -81,11 +81,12 @@ const selectedBarPos = 0;
 
 function HomeScreen({ navigation }) {
   const [selectedCategory, setSelectedCategory] = useState(0);
+  const scrollViewRef = useRef(null);
 
   const [subheadings, cardContent] = facilities.reduce(
     (acc, { category, locations }, index) => {
       acc[0].push(
-        <Pressable key={index} onPress={() => setSelectedCategory(index)}>
+        <Pressable key={index} onPress={() => {setSelectedCategory(index); scrollViewRef.current.scrollTo({x: 0, y: 0, animated: false})}}>
           <Text style={styles.featuredSubheading}>{category}</Text>
           <View style={[styles.selectedBar, {display: selectedCategory == index ? 'flex' : 'none'}]} />
         </Pressable>
@@ -137,6 +138,7 @@ function HomeScreen({ navigation }) {
         </View>
         <View style={styles.cardContainer}>
           <ScrollView
+            ref={scrollViewRef}
             style={styles.scrollViewStyle}
             contentContainerStyle={styles.scrollViewContent}
             horizontal={true}
@@ -377,6 +379,7 @@ const styles = EStyleSheet.create({
   },
   cardArrowCircle: {
     position: 'absolute',
+    backgroundColor: 'white',
     right: '4%',
     top: '48.42%',
     borderRadius: 50,
