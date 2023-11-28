@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, Pressable, Platform } from 'react-native';
+import { View, Image, Text, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view'
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -105,7 +105,7 @@ const styles = EStyleSheet.create({
         top: '38.6%',
         backgroundColor: 'black',
         borderRadius: 6,
-        shadowOffset: { width: 0, height: 4 },
+        shadowOffset: { width: 1, height: 4 },
         shadowColor: 'rgb(0, 0, 0)',
         shadowOpacity: 0.2,
         shadowRadius: 4,
@@ -130,7 +130,7 @@ const styles = EStyleSheet.create({
         height: '2.25rem',
         backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '1.875rem',
-        shadowOffset: { width: 0, height: 4 },
+        shadowOffset: { width: 1, height: 4 },
         shadowRadius: 4,
         shadowColor: 'rgb(0, 0, 0)',
         shadowOpacity: 0.06,
