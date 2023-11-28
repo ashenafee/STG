@@ -4,36 +4,33 @@ import { LinearGradient } from 'expo-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view'
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-function WelcomeScreen({ navigation }) {
-    const backgroundCircle = require('../assets/background_blob.png');
+import Screen from '../components/Screen';
 
+function WelcomeScreen({ navigation }) {
     return (
-        <View style={styles.container}>
-            <Image source={backgroundCircle} style={styles.ellipse1} blurRadius={70}></Image>
-            <Image source={backgroundCircle} style={styles.ellipse2} blurRadius={70}></Image>
-            <Image source={backgroundCircle} style={styles.ellipse3} blurRadius={70}></Image>
-            <Image source={backgroundCircle} style={styles.ellipse4} blurRadius={70}></Image>
-            <Image source={backgroundCircle} style={styles.ellipse5} blurRadius={70}></Image>
-            <Image source={backgroundCircle} style={styles.ellipse6} blurRadius={70}></Image>
-            <MaskedView style={styles.titleContainer}
-                maskElement={
-                    <View
-                        style={{
-                            backgroundColor: 'transparent',
-                            flex: 1,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Text style={styles.titleText}>see the good <Text style={{ color: 'transparent' }}>🌱</Text></Text>
-                    </View>
-                }
-            >
-                <LinearGradient colors={['#FF000F', '#A40811']} start={{ x: 0, y: -0.3 }} end={{ x: 0, y: 2 }} locations={[0, 0.7]}>
-                    <Text style={[styles.titleText, { opacity: 0 }]}>see the good <Text style={{ color: 'transparent' }}>🌱</Text></Text>
-                </LinearGradient>
-            </MaskedView>
-            <Image source={require('../assets/seedling.png')} style={styles.seedling} />
+        <Screen>
+            <View style={styles.titleContainer}>
+                <MaskedView
+                    maskElement={
+                        <View
+                            style={{
+                                backgroundColor: 'transparent',
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Text style={styles.titleText}>see the good </Text>
+                        </View>
+                    }
+                >
+                    <LinearGradient colors={['#FF000F', '#A40811']} start={{ x: 0, y: -0.3 }} end={{ x: 0, y: 2 }} locations={[0, 0.7]}>
+                        <Text style={[styles.titleText, { opacity: 0 }]}>see the good </Text>
+                    </LinearGradient>
+                </MaskedView>
+                <Image source={require('../assets/gift.png')} style={styles.gift} />
+            </View>
+            <View style={styles.loginShadow}/>
             <Pressable style={styles.logInContainer} onPress={() => navigation.navigate('LoginScreen')}>
                 <View style={styles.textContainer}>
                     <Text style={styles.logInText}>LOG IN</Text>
@@ -46,25 +43,34 @@ function WelcomeScreen({ navigation }) {
                     </View>
                 </LinearGradient>
             </Pressable>
+            <View style={styles.demoShadowContainer} />
             <Pressable style={styles.demoContainer}>
                 <View style={styles.demoTextContainer}>
                     <Text style={styles.demoText}>see a demo</Text>
-                        <Image source={require('../assets/arrow.png')} style={styles.arrow} />
+                    <Image source={require('../assets/arrow.png')} style={styles.arrow} />
                 </View>
             </Pressable>
+            <View style={styles.bottomEllipse} />
+            <Image source={require('../assets/leaves/54.png')} style={styles.leaf60} />
+            <Image source={require('../assets/leaves/54.png')} style={styles.leaf54} />
+            <Image source={require('../assets/leaves/56.png')} style={styles.leaf56} />
+            <Image source={require('../assets/leaves/59.png')} style={styles.leaf59} />
+            <Image source={require('../assets/leaves/59.png')} style={styles.leaf58} />
+            <Image source={require('../assets/leaves/61.png')} style={styles.leaf61} />
+            <Image source={require('../assets/leaves/61.png')} style={styles.leaf55} />
+            <Image source={require('../assets/leaves/53.png')} style={styles.leaf53} />
+            <Image source={require('../assets/leaves/57.png')} style={styles.leaf57} />
             <Image source={require('../assets/title_image.png')} style={styles.titleImage} />
-        </View>
+        </Screen>
     );
 }
 
 const styles = EStyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-    },
     titleContainer: {
-        top: '18.27%',
+        position: 'absolute',
+        top: '17.67%',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     titleText: {
         fontSize: '2rem',
@@ -72,37 +78,49 @@ const styles = EStyleSheet.create({
         letterSpacing: '0.16rem',
         color: '#FF000F',
     },
-    seedling: {
-        position: 'absolute',
-        top: '18.27%',
+    gift: {
         height: '2rem',
         width: undefined,
         aspectRatio: 1,
-        left: '77%',
     },
     textContainer: {
         justifyContent: 'center', //Centered vertically
         alignItems: 'center', //Centered horizontally
         flex: 1,
     },
+    loginShadow: {
+        position: 'absolute',
+        top: '29.8%',
+        borderWidth: 1,
+        borderColor: '$pageBackgroundColor',
+        borderRadius: 6,
+        width: '8.6875rem',
+        height: '2.1875rem',
+        backgroundColor: '$pageBackgroundColor',
+        shadowOffset: { width: 1, height: 4 },
+        shadowColor: 'rgb(0, 0, 0)',
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+        elevation: 2,
+    },
     logInContainer: {
         position: 'absolute',
-        top: '31.58%',
+        top: '29.8%',
         borderWidth: 1,
-        borderColor: '#C2141E',
+        borderColor: '$emphTextColor',
         borderRadius: 6,
-        width: '9.8125rem',
+        width: '8.6875rem',
         height: '2.1875rem',
     },
     logInText: {
         fontFamily: 'Ubuntu-Regular',
         fontSize: '0.75rem',
-        color: '#C2141E',
+        color: '$emphTextColor',
         letterSpacing: '0.125rem',
     },
     signUpPosition: {
         position: 'absolute',
-        top: '38.6%',
+        top: '37.38%',
         backgroundColor: 'black',
         borderRadius: 6,
         shadowOffset: { width: 1, height: 4 },
@@ -113,7 +131,7 @@ const styles = EStyleSheet.create({
     },
     signUpContainer: {
         borderRadius: 6,
-        width: '9.8125rem',
+        width: '8.6875rem',
         height: '2.1875rem',
     },
     signUpText: {
@@ -123,18 +141,28 @@ const styles = EStyleSheet.create({
         backgroundColor: 'transparent',
         letterSpacing: '0.125rem',
     },
-    demoContainer: {
+    demoShadowContainer: {
         position: 'absolute',
-        top: '52.05%',
+        top: '48.73%',
         width: '8.375rem',
         height: '2.25rem',
-        backgroundColor: 'rgba(255, 255, 255, 1)',
+        backgroundColor: '#FCFAF8',
         borderRadius: '1.875rem',
         shadowOffset: { width: 1, height: 4 },
         shadowRadius: 4,
         shadowColor: 'rgb(0, 0, 0)',
         shadowOpacity: 0.06,
         elevation: 3,
+        zIndex: -1000
+    },
+    demoContainer: {
+        position: 'absolute',
+        top: '48.73%',
+        width: '8.375rem',
+        height: '2.25rem',
+        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+        borderRadius: '1.875rem',
+        zIndex: 1000,
     },
     demoTextContainer: {
         flex: 1,
@@ -155,80 +183,126 @@ const styles = EStyleSheet.create({
         marginLeft: '0.4rem',
         marginTop: '0.3rem',
     },
-    ellipse1: {
+    bottomEllipse: {
         position: 'absolute',
-        width: 120 * 5,
-        height: 120 * 5,
-        right: '5%',
-        marginRight: -120 * 2,
-        bottom: '22.8%',
-        marginBottom: -120 * 2,
-        zIndex: -1000,
-        tintColor: '#FFEEB4',
-    },
-    ellipse2: {
-        position: 'absolute',
-        width: 150 * 5,
-        height: 150 * 5,
-        left: '65.95%',
-        marginLeft: -150 * 2,
-        top: '16.51%',
-        marginTop: -150 * 2,
-        zIndex: -1000,
-        tintColor: '#F4D978',
-    },
-    ellipse3: {
-        position: 'absolute',
-        width: 80 * 5,
-        height: 80 * 5,
-        left: '55.93%',
-        marginLeft: -80 * 2,
-        bottom: '90.78%',
-        marginBottom: -80 * 2,
-        zIndex: -1000,
-        tintColor: '#96C68E',
-    },
-    ellipse4: {
-        position: 'absolute',
-        width: 150 * 5,
-        height: 150 * 5,
-        left: '17.95%',
-        marginLeft: -150 * 2,
-        bottom: '5.7%',
-        marginBottom: -150 * 2,
-        zIndex: -1000,
-        tintColor: '#CC3636',
-    },
-    ellipse5: {
-        position: 'absolute',
-        width: 150 * 5,
-        height: 150 * 5,
-        right: '60.64%',
-        marginRight: -150 * 2,
-        bottom: '83.9%',
-        marginBottom: -150 * 2,
-        zIndex: -1000,
-        tintColor: '#A0DDFF',
-    },
-    ellipse6: {
-        position: 'absolute',
-        width: 100 * 5,
-        height: 100 * 5,
-        right: '1.22%',
-        marginRight: -100 * 2,
-        bottom: '0.58%',
-        marginBottom: -100 * 2,
-        zIndex: -1000,
-        tintColor: '#96C68E',
+        top: '61.5%',
+        width: '47.1875rem',
+        height: '47.1875rem',
+        backgroundColor: '#E0EBF0',
+        borderRadius: '47.1875rem',
+        zIndex: -1000
     },
     titleImage: {
         position: 'absolute',
         bottom: 0,
-        height: '47.51%',
-        width: undefined, // necessary for aspectRatio
-        aspectRatio: 1,
+        paddingRight: '5%',
+        height: '47.31%',
+        width: '100%',
+        left: '-3%',
+        resizeMode: 'contain',
         backgroundColor: 'transparent',
     },
+    leaf60: {
+        position: 'absolute',
+        width: '1.79225rem',
+        height: undefined,
+        aspectRatio: 194 / 342,
+        right: '17.5%',
+        bottom: '29.22%',
+        transform: [
+            { rotateZ: '20deg' }
+        ]
+    },
+    leaf54: {
+        position: 'absolute',
+        width: '2.15075rem',
+        height: undefined,
+        aspectRatio: 194 / 342,
+        right: '4%',
+        bottom: '3%',
+        transform: [
+            { scaleX: -1 },
+            { rotateZ: '-60deg' }
+        ]
+    },
+    leaf56: {
+        position: 'absolute',
+        width: '2.27275rem',
+        height: undefined,
+        aspectRatio: 200 / 300,
+        right: '2%',
+        bottom: '19.58%',
+        transform: [
+            { rotateZ: '-55deg' }
+        ],
+    },
+    leaf59: {
+        position: 'absolute',
+        width: '2.47313rem',
+        height: undefined,
+        aspectRatio: 276 / 279,
+        right: '25%',
+        bottom: '41%',
+        transform: [
+            { rotateZ: '100deg' }
+        ],
+    },
+    leaf58: {
+        position: 'absolute',
+        width: '3.09138rem',
+        height: undefined,
+        aspectRatio: 276 / 279,
+        left: '-2.4%',
+        bottom: '8.5%',
+        transform: [
+            { scaleX: -1 }
+        ],
+    },
+    leaf61: {
+        position: 'absolute',
+        width: '2.19569rem',
+        height: undefined,
+        aspectRatio: 215 / 306,
+        left: '26.16%',
+        bottom: '43.53%',
+        transform: [
+            { scaleX: -1 }
+        ],
+    },
+    leaf55: {
+        position: 'absolute',
+        width: '2.19569rem',
+        height: undefined,
+        aspectRatio: 215 / 306,
+        left: '4.74%',
+        bottom: '-4.11%',
+        transform: [
+            { rotateZ: '180deg' }
+        ],
+    },
+    leaf53: {
+        position: 'absolute',
+        width: '2.65625rem',
+        height: undefined,
+        aspectRatio: 213 / 225,
+        left: '10%',
+        bottom: '33%',
+        transform: [
+            { rotateZ: '10deg' }
+        ],
+    },
+    leaf57: {
+        position: 'absolute',
+        width: '2.09969rem',
+        height: undefined,
+        aspectRatio: 257 / 306,
+        right: '17%',
+        bottom: '13.4%',
+        transform: [
+            { scaleX: -1 },
+            { rotateZ: '180deg' }
+        ],
+    }
 });
 
 export default WelcomeScreen;
