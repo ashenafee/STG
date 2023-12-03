@@ -88,6 +88,7 @@ function App() {
     'Ubuntu-RegularItalic': require('./assets/fonts/Ubuntu-Italic.ttf'),
     'Ubuntu-Light': require('./assets/fonts/Ubuntu-Light.ttf'),
     'Ubuntu-LightItalic': require('./assets/fonts/Ubuntu-LightItalic.ttf'),
+    'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -111,6 +112,14 @@ function App() {
     setLoggedOut(!loggedIn);
   }
 
+  const headerOptions = {
+    headerShown: true,
+    headerShadowVisible: false,
+    headerTransparent: true,
+    headerTitle: '',
+    headerTintColor: '#D31823'
+  }
+
   return (
     <NavigationContainer onReady={onLayoutRootView}>
       <StatusBar backgroundColor={EStyleSheet.value('$pageBackgroundColor')} barStyle='dark-content' />
@@ -119,8 +128,8 @@ function App() {
           {loggedOut ? (
             <>
               <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-              <Stack.Screen name="LoginScreen" component={LoginScreen} />
-              <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+              <Stack.Screen name="LoginScreen" component={LoginScreen}  options={headerOptions}/>
+              <Stack.Screen name="SignUpScreen" component={SignUpScreen}  options={headerOptions}/>
             </>
           ) :
             (
