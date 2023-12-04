@@ -8,7 +8,7 @@ interface ButtonProps {
     transparentShadow?: boolean,
     shadow?: boolean,
     center?: string,
-    style: any|any[],
+    style?: any|any[],
     children: React.ReactNode,
 }
 
@@ -25,7 +25,9 @@ const Button = ({ transparentShadow = false, shadow = false, center = '', childr
                     style={[styles.buttonContainer,
                     {
                         alignItems: center.includes('v') ? 'center' : 'stretch',
-                        justifyContent: center.includes('h') ? 'center' : 'flex-start'
+                        height: center.includes('v') ? '100%': null,
+                        justifyContent: center.includes('h') ? 'center' : 'flex-start',
+                        width: center.includes('h') ? '100%': null,
                     }]}>
                     {children}
                 </View>
@@ -44,8 +46,6 @@ const styles = EStyleSheet.create({
     },
     buttonContainer: {
         flexDirection: 'row',
-        width: '100%',
-        height: '100%',
     },
 });
 
