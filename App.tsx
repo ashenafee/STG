@@ -13,7 +13,7 @@ import LoginScreen from './screens/LoginScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import SignUpScreen from './screens/SignUpScreen';
 
-import { LoginContext } from './contexts/AppContext';
+import { LoginContext, NotifContext } from './contexts/AppContext';
 import HistoryScreen from './screens/HistoryScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
@@ -38,7 +38,9 @@ function HomeStackContainer() {
 }
 
 function MainAppContainer() {
-  const screenOptions:BottomTabNavigationOptions = {
+  const [read, setRead] = useState(false);
+
+  const screenOptions: BottomTabNavigationOptions = {
     headerShown: false,
     tabBarShowLabel: false,
     tabBarStyle: {
@@ -50,31 +52,38 @@ function MainAppContainer() {
     },
   }
 
-  const tabBarIcon = (imageSource: ImageSourcePropType, focused: boolean) => {
+  const tabBarIcon = (imageSource: ImageSourcePropType, focused: boolean, read = null) => {
     return (
       <View style={styles.tabBarIconContainer}>
-      <Image source={imageSource} style={[styles.tabBarIcon, {tintColor: focused ? '#C2D1D9' : EStyleSheet.value('$gray')}]}/>
-        <View style={[styles.tabBarFocusedDot, {backgroundColor: focused ? '#C2D1D9' : 'transparent'}]}/>
-        </View>
+        <Image source={imageSource} style={[styles.tabBarIcon, { tintColor: focused ? '#C2D1D9' : EStyleSheet.value('$gray') }]} />
+        <View style={[styles.tabBarFocusedDot, { backgroundColor: focused ? '#C2D1D9' : 'transparent' }]} />
+        {
+          read !== null && !read ?
+          <View style={styles.tabUnread} />
+          : <></>
+        }
+      </View>
     );
-};
+  };
 
   return (
     <NavigationContainer independent={true}>
-      <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen name="HomeStack"
-        component={HomeStackContainer}
-        options={{tabBarIcon: ({focused}) => tabBarIcon(require('./assets/tab_bar/home_icon.png'), focused)}}/>
-        <Tab.Screen name="HistoryScreen"
-        component={HistoryScreen}
-        options={{tabBarIcon: ({focused}) => tabBarIcon(require('./assets/tab_bar/book_icon.png'), focused)}}/>
-        <Tab.Screen name="NotificationsScreen"
-        component={NotificationsScreen}
-        options={{tabBarIcon: ({focused}) => tabBarIcon(require('./assets/tab_bar/notifs_icon.png'), focused)}}/>
-        <Tab.Screen name="ProfileScreen"
-        component={ProfileScreen}
-        options={{tabBarIcon: ({focused}) => tabBarIcon(require('./assets/tab_bar/profile_icon.png'), focused)}}/>
-      </Tab.Navigator>
+      <NotifContext.Provider value={setRead}>
+        <Tab.Navigator screenOptions={screenOptions}>
+          <Tab.Screen name="HomeScreen"
+            component={HomeScreen}
+            options={{ tabBarIcon: ({ focused }) => tabBarIcon(require('./assets/tab_bar/home_icon.png'), focused) }} />
+          <Tab.Screen name="HistoryScreen"
+            component={HistoryScreen}
+            options={{ tabBarIcon: ({ focused }) => tabBarIcon(require('./assets/tab_bar/book_icon.png'), focused) }} />
+          <Tab.Screen name="NotificationsScreen"
+            component={NotificationsScreen}
+            options={{ tabBarIcon: ({ focused }) => tabBarIcon(require('./assets/tab_bar/notifs_icon.png'), focused, read) }} />
+          <Tab.Screen name="ProfileScreen"
+            component={ProfileScreen}
+            options={{ tabBarIcon: ({ focused }) => tabBarIcon(require('./assets/tab_bar/profile_icon.png'), focused) }} />
+        </Tab.Navigator>
+      </NotifContext.Provider>
     </NavigationContainer>
   );
 }
@@ -89,7 +98,7 @@ function App() {
     $pageBackgroundColor: '#FCFAF8',
     $emphTextColor: '#D31823',
     $textColor: 'black',
-    $gray: '#9A9A9A'
+    $gray: '#9A9A9A',
   });
 
   const [fontsLoaded, fontError] = useFonts({
@@ -141,8 +150,8 @@ function App() {
           {loggedOut ? (
             <>
               <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-              <Stack.Screen name="LoginScreen" component={LoginScreen}  options={headerOptions}/>
-              <Stack.Screen name="SignUpScreen" component={SignUpScreen}  options={headerOptions}/>
+              <Stack.Screen name="LoginScreen" component={LoginScreen} options={headerOptions} />
+              <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={headerOptions} />
             </>
           ) :
             (
@@ -156,10 +165,10 @@ function App() {
 
 const styles = EStyleSheet.create({
   tabBarIconContainer: {
-  height: '100%',
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
+    height: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   tabBarIcon: {
     height: '45%',
@@ -171,6 +180,17 @@ const styles = EStyleSheet.create({
     width: '0.375rem',
     borderRadius: 50,
     marginTop: '1%',
+  },
+  tabUnread: {
+    position: 'absolute',
+    bottom: '35%',
+    right: '5%',
+    backgroundColor: '#FF0000',
+    width: '0.6rem',
+    height: '0.6rem',
+    borderRadius: 50,
+    borderWidth: 2.5,
+    borderColor: '$pageBackgroundColor',
   }
 });
 
