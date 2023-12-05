@@ -107,6 +107,7 @@ function App() {
     'Kumbh Sans-Light': require('./assets/fonts/KumbhSans-Light.ttf'),
     'Kumbh Sans-Bold': require('./assets/fonts/KumbhSans-Bold.ttf'),
     'Kumbh Sans-Medium': require('./assets/fonts/KumbhSans-Medium.ttf'),
+    'Kumbh Sans-Regular': require('./assets/fonts/KumbhSans-Regular.ttf'),
     'Kumbh Sans-SemiBold': require('./assets/fonts/KumbhSans-SemiBold.ttf'),
     'Ubuntu-Regular': require('./assets/fonts/Ubuntu-Regular.ttf'),
     'Ubuntu-RegularItalic': require('./assets/fonts/Ubuntu-Italic.ttf'),
