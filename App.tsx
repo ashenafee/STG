@@ -18,6 +18,7 @@ import HistoryScreen from './screens/HistoryScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
 import MapScreen from './screens/MapScreen';
+import ListViewScreen from './screens/ListViewScreen';
 
 import type { ImageSourcePropType } from 'react-native'
 import type { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
@@ -33,6 +34,7 @@ function HomeStackContainer() {
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
       <HomeStack.Screen name="MapScreen" component={MapScreen} />
+      <HomeStack.Screen name="ListViewScreen" component={ListViewScreen} />
     </HomeStack.Navigator>
   );
 }

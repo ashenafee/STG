@@ -155,7 +155,7 @@ function HomeScreen({ navigation }) {
             <Text style={styles.viewText}>view map</Text>
           </ShadowButton>
         </Pressable>
-        <Pressable style={styles.viewThumbnailContainer} onPress={() => console.log("Opening list view")}>
+        <Pressable style={styles.viewThumbnailContainer} onPress={() => navigation.navigate("ListViewScreen")}>
           <Image source={require('../assets/list_thumbnail.png')} style={styles.viewThumbnail} />
           <ShadowButton shadow={false} style={styles.viewButton} disabled={true}>
             <Text style={styles.viewText}>view list</Text>

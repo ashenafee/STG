@@ -63,7 +63,7 @@ function MapScreen({ navigation }) {
                     })
                 }
             </View>
-            <Pressable onPress={()=>console.log("go to list view")} style={styles.listButton}>
+            <Pressable onPress={()=>navigation.navigate('ListViewScreen')} style={styles.listButton}>
                 <Image source={require('../assets/list_icon.png')} style={styles.listIcon}/>
             </Pressable>
             <View style={[styles.selectedPopupContainer, { display: showPopup ? 'flex' : 'none' }]}>
