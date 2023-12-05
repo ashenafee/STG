@@ -6,7 +6,7 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Screen from '../components/Screen';
-import facilities from '../facilities'
+import { facilities } from '../facilities'
 
 import type { DimensionValue, ImageSourcePropType } from 'react-native';
 
@@ -88,7 +88,7 @@ function HomeScreen({ navigation }) {
       acc[0].push(
         <Pressable key={index} onPress={() => {setSelectedCategory(index); scrollViewRef.current.scrollTo({x: 0, y: 0, animated: false})}}>
           <Text style={styles.featuredSubheading}>{category}</Text>
-          <View style={[styles.selectedBar, {display: selectedCategory == index ? 'flex' : 'none'}]} />
+          <View style={[styles.selectedBar, { display: selectedCategory == index ? 'flex' : 'none' }]} />
         </Pressable>
       );
       acc[1].push(
@@ -113,7 +113,7 @@ function HomeScreen({ navigation }) {
         <Image source={require('../assets/profile_pic.png')} style={styles.profilePic} />
       </Pressable>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}><Text style={styles.titleEmph}>Hello, </Text> Ariel! 👋</Text>
+        <Text style={styles.title}><Text style={styles.titleEmph}>Hello, </Text>Ariel! 👋</Text>
         <Text style={styles.subTitle}>how do you feel about starting your day with a donation?</Text>
       </View>
       <View style={styles.pictureContainer}>
@@ -149,15 +149,15 @@ function HomeScreen({ navigation }) {
         </View>
       </View>
       <View style={styles.viewContainer}>
-        <Pressable style={styles.viewThumbnailContainer}>
+        <Pressable style={styles.viewThumbnailContainer} onPress={() => { console.log("Opening map view"); navigation.navigate("MapScreen"); }}>
           <Image source={require('../assets/map_thumbnail.png')} style={styles.viewThumbnail} />
-          <ShadowButton shadow={false} style={styles.viewButton}>
+          <ShadowButton shadow={false} style={styles.viewButton} disabled={true}>
             <Text style={styles.viewText}>view map</Text>
           </ShadowButton>
         </Pressable>
-        <Pressable style={styles.viewThumbnailContainer}>
+        <Pressable style={styles.viewThumbnailContainer} onPress={() => console.log("Opening list view")}>
           <Image source={require('../assets/list_thumbnail.png')} style={styles.viewThumbnail} />
-          <ShadowButton shadow={false} style={styles.viewButton}>
+          <ShadowButton shadow={false} style={styles.viewButton} disabled={true}>
             <Text style={styles.viewText}>view list</Text>
           </ShadowButton>
         </Pressable>

@@ -17,14 +17,25 @@ import { LoginContext } from './contexts/AppContext';
 import HistoryScreen from './screens/HistoryScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
+import MapScreen from './screens/MapScreen';
 
 import type { ImageSourcePropType } from 'react-native'
 import type { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+const HomeStack = createNativeStackNavigator();
 
 SplashScreen.preventAutoHideAsync();
+
+function HomeStackContainer() {
+  return(
+    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
+      <HomeStack.Screen name="MapScreen" component={MapScreen} />
+    </HomeStack.Navigator>
+  );
+}
 
 function MainAppContainer() {
   const screenOptions:BottomTabNavigationOptions = {
@@ -42,7 +53,7 @@ function MainAppContainer() {
   const tabBarIcon = (imageSource: ImageSourcePropType, focused: boolean) => {
     return (
       <View style={styles.tabBarIconContainer}>
-      <Image source={imageSource} style={[styles.tabBarIcon, {tintColor: focused ? '#C2D1D9' : '#9A9A9A'}]}/>
+      <Image source={imageSource} style={[styles.tabBarIcon, {tintColor: focused ? '#C2D1D9' : EStyleSheet.value('$gray')}]}/>
         <View style={[styles.tabBarFocusedDot, {backgroundColor: focused ? '#C2D1D9' : 'transparent'}]}/>
         </View>
     );
@@ -51,8 +62,8 @@ function MainAppContainer() {
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen name="HomeScreen"
-        component={HomeScreen}
+        <Tab.Screen name="HomeStack"
+        component={HomeStackContainer}
         options={{tabBarIcon: ({focused}) => tabBarIcon(require('./assets/tab_bar/home_icon.png'), focused)}}/>
         <Tab.Screen name="HistoryScreen"
         component={HistoryScreen}
@@ -78,11 +89,13 @@ function App() {
     $pageBackgroundColor: '#FCFAF8',
     $emphTextColor: '#D31823',
     $textColor: 'black',
+    $gray: '#9A9A9A'
   });
 
   const [fontsLoaded, fontError] = useFonts({
     'Kumbh Sans-Light': require('./assets/fonts/KumbhSans-Light.ttf'),
     'Kumbh Sans-Bold': require('./assets/fonts/KumbhSans-Bold.ttf'),
+    'Kumbh Sans-Medium': require('./assets/fonts/KumbhSans-Medium.ttf'),
     'Kumbh Sans-SemiBold': require('./assets/fonts/KumbhSans-SemiBold.ttf'),
     'Ubuntu-Regular': require('./assets/fonts/Ubuntu-Regular.ttf'),
     'Ubuntu-RegularItalic': require('./assets/fonts/Ubuntu-Italic.ttf'),
@@ -122,7 +135,7 @@ function App() {
 
   return (
     <NavigationContainer onReady={onLayoutRootView}>
-      <StatusBar backgroundColor={EStyleSheet.value('$pageBackgroundColor')} barStyle='dark-content' />
+      <StatusBar backgroundColor={'transparent'} translucent={true} barStyle='dark-content' />
       <LoginContext.Provider value={loginHandler}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {loggedOut ? (
