@@ -130,7 +130,7 @@ function HomeScreen({ navigation }) {
           <Image source={require('../assets/gallery_icon.png')} style={styles.galleryIcon} />
         </ShadowButton>
         <Text style={styles.or}>&ndash; or &ndash;</Text>
-        <ShadowButton style={styles.photoButton} onPress={() => console.log("Taking a photo")}>
+        <ShadowButton style={styles.photoButton} onPress={() => navigation.navigate("CameraScreen")}>
           <Image source={require('../assets/camera_icon.png')} style={styles.cameraIcon} />
           <Text style={styles.photoText}> take a photo</Text>
         </ShadowButton>
@@ -155,7 +155,7 @@ function HomeScreen({ navigation }) {
         </View>
       </View>
       <View style={styles.viewContainer}>
-        <Pressable style={styles.viewThumbnailContainer} onPress={() => { console.log("Opening map view"); navigation.navigate("MapScreen"); }}>
+        <Pressable style={styles.viewThumbnailContainer} onPress={() => { console.log("Opening map view"); navigation.navigate("MapScreen", {filter: null}); }}>
           <Image source={require('../assets/map_thumbnail.png')} style={styles.viewThumbnail} />
           <ShadowButton shadow={false} style={styles.viewButton} disabled={true}>
             <Text style={styles.viewText}>view map</Text>

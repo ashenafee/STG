@@ -24,6 +24,7 @@ import ListViewScreen from './screens/ListViewScreen';
 import type { ImageSourcePropType } from 'react-native'
 import type { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import DetailsScreen from './screens/DetailsScreen';
+import CameraScreen from './screens/CameraScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,6 +44,7 @@ function HomeStackContainer() {
   return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
+      <HomeStack.Screen name="CameraScreen" component={CameraScreen} />
       <HomeStack.Screen name="MapScreen" component={MapScreen} />
       <HomeStack.Screen name="ListViewScreen" component={ListViewScreen} options={backHeaderOptions} />
       <HomeStack.Screen name="DetailsScreen" component={DetailsScreen} options={backHeaderOptions}/>
