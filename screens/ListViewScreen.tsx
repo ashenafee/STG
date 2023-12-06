@@ -264,13 +264,13 @@ const styles = EStyleSheet.create({
     },
     filterContainer: {
         position: 'absolute',
-        top: '18%',
+        top: '17%',
         width: '100%',
         height: '8.62%',
         justifyContent: 'space-between',
     },
     filterRow: {
-        height: '43.71%',
+        height: '42.5%',
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -303,14 +303,14 @@ const styles = EStyleSheet.create({
     scrollViewStyle: {
         marginHorizontal: -30,
         marginBottom: -30,
-        marginTop: -30,
+        marginTop: -5,
     },
     scrollViewContent: {
         alignItems: 'center',
         gap: '0.69rem',
         paddingBottom: 30, // must be negative of scrollViewStyle marginBottom above for bottom shadow to show
         paddingHorizontal: 30, // see ^
-        paddingTop: 30,
+        paddingTop: 5,
     },
     cardContainer: {
         width: '83.6%',
