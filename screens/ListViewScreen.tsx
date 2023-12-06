@@ -6,7 +6,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Screen from '../components/Screen';
 import Button from '../components/Button';
 
-import { facilities } from '../facilities';
+import { facilities, filterIcons } from '../facilities';
 import type { Database, DonationCentre } from '../facilities'
 import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -42,26 +42,16 @@ const getFacilities = (selected: number, facilities: Database[]): DonationCentre
                 .flat()
                 .sort((a, b) => (a.fullName > b.fullName ? 1 : -1));
         case 3:
-            return facilities.find(({ category }) => category === 'Food').locations;
+            return facilities.find(({ category }) => category === 'food').locations;
         case 4:
-            return facilities.find(({ category }) => category === 'Clothing').locations;
+            return facilities.find(({ category }) => category === 'clothing').locations;
         case 5:
-            return facilities.find(({ category }) => category === 'Medicine').locations;
+            return facilities.find(({ category }) => category === 'medicine').locations;
         case 6:
-            return facilities.find(({ category }) => category === 'Emergency').locations;
+            return facilities.find(({ category }) => category === 'emergency').locations;
         default:
             return [];
     }
-}
-
-const filterIcons = {
-    "featured": require('../assets/filter_icons/featured.png'),
-    "distance": require('../assets/filter_icons/distance.png'),
-    "a to z": require('../assets/filter_icons/a_to_z.png'),
-    "food": require('../assets/filter_icons/food.png'),
-    "clothing": require('../assets/filter_icons/clothing.png'),
-    "medicine": require('../assets/filter_icons/medicine.png'),
-    "emergency": require('../assets/filter_icons/emergency.png'),
 }
 
 const FilterButton = ({ selection, index, setSelected, name }) => {
@@ -164,7 +154,7 @@ function ListViewScreen({ navigation }) {
                     {
                         getFacilities(selected, facilities).map((location, index) => {
                             return (
-                                <View key={index} style={styles.cardContainer}>
+                                <Pressable key={index} style={styles.cardContainer} onPress={()=>navigation.navigate("DetailsScreen", {facility: location})}>
                                     <View style={styles.cardLeft}>
                                         <Image source={location.thumbnail} style={styles.cardImage} />
                                         <MaskedView
@@ -222,7 +212,7 @@ function ListViewScreen({ navigation }) {
                                             </Button>
                                         </View>
                                     </View>
-                                </View>
+                                </Pressable>
                             );
                         })
                     }

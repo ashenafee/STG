@@ -23,10 +23,19 @@ import ListViewScreen from './screens/ListViewScreen';
 
 import type { ImageSourcePropType } from 'react-native'
 import type { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
+import DetailsScreen from './screens/DetailsScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
+
+const backHeaderOptions = {
+  headerShown: true,
+  headerShadowVisible: false,
+  headerTransparent: true,
+  headerTitle: '',
+  headerTintColor: EStyleSheet.value('$emphTextColor')
+}
 
 SplashScreen.preventAutoHideAsync();
 
@@ -35,7 +44,8 @@ function HomeStackContainer() {
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
       <HomeStack.Screen name="MapScreen" component={MapScreen} />
-      <HomeStack.Screen name="ListViewScreen" component={ListViewScreen} />
+      <HomeStack.Screen name="ListViewScreen" component={ListViewScreen} options={backHeaderOptions} />
+      <HomeStack.Screen name="DetailsScreen" component={DetailsScreen} options={backHeaderOptions}/>
     </HomeStack.Navigator>
   );
 }
@@ -139,14 +149,6 @@ function App() {
     setLoggedOut(!loggedIn);
   }
 
-  const headerOptions = {
-    headerShown: true,
-    headerShadowVisible: false,
-    headerTransparent: true,
-    headerTitle: '',
-    headerTintColor: '#D31823'
-  }
-
   return (
     <NavigationContainer onReady={onLayoutRootView}>
       <StatusBar backgroundColor={'transparent'} translucent={true} barStyle='dark-content' />
@@ -155,8 +157,8 @@ function App() {
           {loggedOut ? (
             <>
               <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-              <Stack.Screen name="LoginScreen" component={LoginScreen} options={headerOptions} />
-              <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={headerOptions} />
+              <Stack.Screen name="LoginScreen" component={LoginScreen} options={backHeaderOptions} />
+              <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={backHeaderOptions} />
               <Stack.Screen name="DemoScreen" component={DemoScreen} />
             </>
           ) :

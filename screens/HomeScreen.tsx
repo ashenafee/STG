@@ -6,7 +6,7 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Screen from '../components/Screen';
-import { facilities } from '../facilities'
+import { type DonationCentre, facilities } from '../facilities'
 
 import type { DimensionValue, ImageSourcePropType } from 'react-native';
 
@@ -16,13 +16,15 @@ interface DonationCardProps {
   name: string,
   progress: number,
   imageSource: ImageSourcePropType,
+  navigation: any,
+  location: DonationCentre
 }
 
-const DonationCard = ({ name, progress, imageSource }: DonationCardProps) => {
+const DonationCard = ({ name, progress, imageSource, navigation, location }: DonationCardProps) => {
   const progressPercentage: DimensionValue = `${(1 - progress) * 115 - 15}%`
 
   return (
-    <Pressable style={styles.card} onPress={() => console.log(`Pressed ${name}`)}>
+    <Pressable style={styles.card} onPress={() => navigation.navigate("DetailsScreen", { facility: location })}>
       <Image source={imageSource} style={styles.cardImage} />
       <LinearGradient style={styles.cardArrowCircle} colors={['#D31823', '#FFD43D']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} locations={[0, 1]}>
         <Image source={arrow} style={styles.cardArrow} />
@@ -86,20 +88,24 @@ function HomeScreen({ navigation }) {
   const [subheadings, cardContent] = facilities.reduce(
     (acc, { category, locations }, index) => {
       acc[0].push(
-        <Pressable key={index} onPress={() => {setSelectedCategory(index); scrollViewRef.current.scrollTo({x: 0, y: 0, animated: false})}}>
-          <Text style={styles.featuredSubheading}>{category}</Text>
+        <Pressable key={index} onPress={() => { setSelectedCategory(index); scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: false }) }}>
+          <Text style={styles.featuredSubheading}>{category.charAt(0).toUpperCase() + category.slice(1)}</Text>
           <View style={[styles.selectedBar, { display: selectedCategory == index ? 'flex' : 'none' }]} />
         </Pressable>
       );
       acc[1].push(
-        locations.map(({ name, progress, thumbnail }: { name: string, progress: number, thumbnail: any }, locationIndex) => {
-          return (<DonationCard
-            key={locationIndex}
-            name={name}
-            progress={progress}
-            imageSource={thumbnail}
-          />);
-        })
+        locations
+          .filter((location) => location.featured)
+          .map((location: DonationCentre, locationIndex) => {
+            return (<DonationCard
+              key={locationIndex}
+              name={location.cardName}
+              progress={location.progress}
+              imageSource={location.thumbnail}
+              location={location}
+              navigation={navigation}
+            />);
+          })
       );
       return acc;
     },
