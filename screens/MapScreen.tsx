@@ -16,8 +16,18 @@ const editSelections = (index, selected, setSelected) => {
     setSelected(newSelection);
 }
 
-function MapScreen({ navigation }) {
-    const [selected, setSelected] = useState(facilities.map(() => false));
+function MapScreen({ navigation, route }) {
+    const fixedFilter = route.params.filter;
+    const filterDict = {
+        "food": 0,
+        "clothing": 0,
+        "emergency": 1,
+        "medicine": 3
+    }
+
+    const selectedList = fixedFilter === null ? facilities.map(() => false) : facilities.map((val, index) => filterDict[fixedFilter] === index ? true : false)
+
+    const [selected, setSelected] = useState(selectedList);
     const [showPopup, setShowPopup] = useState(false);
     const [popUpLocation, setPopupLocation] = useState(facilities[0].locations[0]);
 
@@ -48,7 +58,7 @@ function MapScreen({ navigation }) {
                     })
                 }
             </MapView>
-            <View style={styles.filterContainer}>
+            {fixedFilter === null ? <View style={styles.filterContainer}>
                 {
                     facilities.map(({category, locations}, index) => {
                         return (
@@ -62,7 +72,7 @@ function MapScreen({ navigation }) {
                         );
                     })
                 }
-            </View>
+            </View> : <></>}
             <Pressable onPress={()=>navigation.navigate('ListViewScreen')} style={styles.listButton}>
                 <Image source={require('../assets/list_icon.png')} style={styles.listIcon}/>
             </Pressable>

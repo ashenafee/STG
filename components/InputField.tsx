@@ -49,8 +49,8 @@ function InputField({
                 secureTextEntry={secureTextEntry}
                 {...props}
             />
-            <Image source={verify && text !== '' ? verifiedIcon : rightIcon}
-                style={[styles.icon, {aspectRatio: rightIconAspectRatio}, verify && text !== '' ? { tintColor: '#85BF61' } : null]} />
+            {verify && text !== '' ? <Image source={verifiedIcon}
+                style={[styles.icon, {aspectRatio: rightIconAspectRatio}, verify && text !== '' ? { tintColor: '#85BF61' } : null]} /> : <></>}
         </View>
     );
 }
