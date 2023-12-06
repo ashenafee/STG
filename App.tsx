@@ -29,7 +29,7 @@ const HomeStack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
 
 function HomeStackContainer() {
-  return(
+  return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
       <HomeStack.Screen name="MapScreen" component={MapScreen} />
@@ -59,8 +59,8 @@ function MainAppContainer() {
         <View style={[styles.tabBarFocusedDot, { backgroundColor: focused ? '#C2D1D9' : 'transparent' }]} />
         {
           read !== null && !read ?
-          <View style={styles.tabUnread} />
-          : <></>
+            <View style={styles.tabUnread} />
+            : <></>
         }
       </View>
     );
@@ -70,8 +70,8 @@ function MainAppContainer() {
     <NavigationContainer independent={true}>
       <NotifContext.Provider value={setRead}>
         <Tab.Navigator screenOptions={screenOptions}>
-          <Tab.Screen name="HomeScreen"
-            component={HomeScreen}
+          <Tab.Screen name="HomeStack"
+            component={HomeStackContainer}
             options={{ tabBarIcon: ({ focused }) => tabBarIcon(require('./assets/tab_bar/home_icon.png'), focused) }} />
           <Tab.Screen name="HistoryScreen"
             component={HistoryScreen}
@@ -105,12 +105,14 @@ function App() {
     'Kumbh Sans-Light': require('./assets/fonts/KumbhSans-Light.ttf'),
     'Kumbh Sans-Bold': require('./assets/fonts/KumbhSans-Bold.ttf'),
     'Kumbh Sans-Medium': require('./assets/fonts/KumbhSans-Medium.ttf'),
+    'Kumbh Sans-Regular': require('./assets/fonts/KumbhSans-Regular.ttf'),
     'Kumbh Sans-SemiBold': require('./assets/fonts/KumbhSans-SemiBold.ttf'),
     'Ubuntu-Regular': require('./assets/fonts/Ubuntu-Regular.ttf'),
     'Ubuntu-RegularItalic': require('./assets/fonts/Ubuntu-Italic.ttf'),
     'Ubuntu-Light': require('./assets/fonts/Ubuntu-Light.ttf'),
     'Ubuntu-LightItalic': require('./assets/fonts/Ubuntu-LightItalic.ttf'),
     'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
+    'MPLUS Rounded 1c-Regular': require('./assets/fonts/MPLUSRounded1c-Regular.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {
