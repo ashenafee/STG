@@ -1,17 +1,13 @@
 import React from 'react';
-import { useContext } from 'react';
 import { View, Text, Pressable, Image, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
-import { LoginContext } from '../contexts/AppContext';
 
 import Screen from '../components/Screen';
 import InputField from '../components/InputField';
 import ThirdPartyButton from '../components/ThirdPartyButton';
 
-function SignUpScreen() {
-  const loginHandler = useContext(LoginContext);
+function SignUpScreen({ navigation }) {
 
   return (
     <Screen style={styles.screen}>
@@ -45,7 +41,7 @@ function SignUpScreen() {
           secureTextEntry={true}
         />
       </View>
-      <Pressable style={styles.signUpPosition} onPress={() => loginHandler(true)}>
+      <Pressable style={styles.signUpPosition} onPress={() => navigation.navigate("DemoScreen", { signedin: true })}>
         <LinearGradient style={styles.signUpContainer} colors={['#D31823', '#FFD43D']} start={{ x: 0, y: 0 }} end={{ x: 0.75, y: 3 }} locations={[0.1, 0.8]}>
           <View style={styles.textContainer}>
             <Text style={styles.signUpText}>sign up</Text>
@@ -65,6 +61,7 @@ function SignUpScreen() {
           brand="Google"
           logoStyle={styles.googleLogo}
           textStyle={{ color: 'black' }}
+          onPress={() => navigation.navigate("DemoScreen", { signedin: true })}
         />
         <ThirdPartyButton
           type='signup'
@@ -72,6 +69,7 @@ function SignUpScreen() {
           logo={require("../assets/facebook.png")}
           brand="Facebook"
           logoStyle={styles.googleLogo}
+          onPress={() => navigation.navigate("DemoScreen", { signedin: true })}
         />
         <ThirdPartyButton
           type="signup"
@@ -79,6 +77,7 @@ function SignUpScreen() {
           logo={require("../assets/apple.png")}
           brand="Apple"
           logoStyle={styles.appleLogo}
+          onPress={() => navigation.navigate("DemoScreen", { signedin: true })}
         />
       </View>
     </Screen>

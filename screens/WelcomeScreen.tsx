@@ -30,7 +30,7 @@ function WelcomeScreen({ navigation }) {
                 </MaskedView>
                 <Image source={require('../assets/gift.png')} style={styles.gift} />
             </View>
-            <View style={styles.loginShadow}/>
+            <View style={styles.loginShadow} />
             <Pressable style={styles.logInContainer} onPress={() => navigation.navigate('LoginScreen')}>
                 <View style={styles.textContainer}>
                     <Text style={styles.logInText}>LOG IN</Text>
@@ -44,7 +44,7 @@ function WelcomeScreen({ navigation }) {
                 </LinearGradient>
             </Pressable>
             <View style={styles.demoShadowContainer} />
-            <Pressable style={styles.demoContainer}>
+            <Pressable style={styles.demoContainer} onPress={() => navigation.navigate('DemoScreen', { signedin: false })}>
                 <View style={styles.demoTextContainer}>
                     <Text style={styles.demoText}>see a demo</Text>
                     <Image source={require('../assets/arrow.png')} style={styles.arrow} />
