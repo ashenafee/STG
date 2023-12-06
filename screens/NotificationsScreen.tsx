@@ -239,7 +239,7 @@ const styles = EStyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: '3.8%'
+        marginTop: '5.5%'
     },
     messageAccountName: {
         fontFamily: 'Kumbh Sans-SemiBold',
@@ -297,10 +297,10 @@ const styles = EStyleSheet.create({
         width: '100%',
         height: 50,
         backgroundColor: 'black',
-        shadowOffset: { width: 1, height: -4 },
-        shadowRadius: 4,
+        shadowOffset: { width: 1, height: -6 },
+        shadowRadius: 6,
         shadowColor: 'rgba(0, 0, 0, 1)',
-        shadowOpacity: 1,
+        shadowOpacity: 0.08,
         elevation: 25,
         zIndex: 1000,
     }

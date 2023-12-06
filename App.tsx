@@ -40,7 +40,7 @@ const backHeaderOptions = {
 SplashScreen.preventAutoHideAsync();
 
 function HomeStackContainer() {
-  return(
+  return (
     <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
       <HomeStack.Screen name="MapScreen" component={MapScreen} />
@@ -72,8 +72,8 @@ function MainAppContainer() {
         <View style={[styles.tabBarFocusedDot, { backgroundColor: focused ? '#C2D1D9' : 'transparent' }]} />
         {
           read !== null && !read ?
-          <View style={styles.tabUnread} />
-          : <></>
+            <View style={styles.tabUnread} />
+            : <></>
         }
       </View>
     );
@@ -126,6 +126,7 @@ function App() {
     'Ubuntu-Light': require('./assets/fonts/Ubuntu-Light.ttf'),
     'Ubuntu-LightItalic': require('./assets/fonts/Ubuntu-LightItalic.ttf'),
     'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
+    'MPLUS Rounded 1c-Regular': require('./assets/fonts/MPLUSRounded1c-Regular.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {

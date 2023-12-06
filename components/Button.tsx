@@ -41,7 +41,7 @@ const styles = EStyleSheet.create({
         shadowOffset: { width: 1, height: 4 },
         shadowRadius: 4,
         shadowColor: 'rgba(0, 0, 0, 0.6)',
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.2,
         elevation: 3,
     },
     buttonContainer: {
