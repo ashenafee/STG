@@ -66,7 +66,7 @@ function MapScreen({ navigation }) {
             <Pressable onPress={()=>navigation.navigate('ListViewScreen')} style={styles.listButton}>
                 <Image source={require('../assets/list_icon.png')} style={styles.listIcon}/>
             </Pressable>
-            <View style={[styles.selectedPopupContainer, { display: showPopup ? 'flex' : 'none' }]}>
+            <Pressable style={[styles.selectedPopupContainer, { display: showPopup ? 'flex' : 'none' }]} onPress={()=>navigation.navigate("DetailsScreen", {facility: popUpLocation})}>
                 <View style={styles.popupLeft}>
                     <Image source={popUpLocation.thumbnail} style={styles.popUpImage} />
                     <MaskedView
@@ -127,7 +127,7 @@ function MapScreen({ navigation }) {
                         </Button>
                     </View>
                 </View>
-            </View>
+            </Pressable>
         </Screen>
     );
 }
