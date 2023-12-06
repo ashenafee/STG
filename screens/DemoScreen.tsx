@@ -1,18 +1,13 @@
-import React, { useContext } from 'react';
-import { View, Image, Text, Pressable, Dimensions } from 'react-native';
+import React from 'react';
+import { View, Image, Text, Pressable } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Screen from '../components/Screen';
-import { LoginContext } from '../contexts/AppContext';
 import Button from '../components/Button';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 function DemoScreen({ navigation, route }) {
-    const loginHandler = useContext(LoginContext);
 
     const continueFunction = route.params.signedin ?
-        () => loginHandler(true) :
+        () => navigation.navigate("OptionsScreen") :
         () => navigation.navigate("WelcomeScreen");
 
     return (
