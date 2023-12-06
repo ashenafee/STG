@@ -12,6 +12,7 @@ import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import SignUpScreen from './screens/SignUpScreen';
+import DemoScreen from './screens/DemoScreen';
 
 import { LoginContext, NotifContext } from './contexts/AppContext';
 import HistoryScreen from './screens/HistoryScreen';
@@ -72,8 +73,8 @@ function MainAppContainer() {
     <NavigationContainer independent={true}>
       <NotifContext.Provider value={setRead}>
         <Tab.Navigator screenOptions={screenOptions}>
-          <Tab.Screen name="HomeScreen"
-            component={HomeScreen}
+          <Tab.Screen name="HomeStack"
+            component={HomeStackContainer}
             options={{ tabBarIcon: ({ focused }) => tabBarIcon(require('./assets/tab_bar/home_icon.png'), focused) }} />
           <Tab.Screen name="HistoryScreen"
             component={HistoryScreen}
@@ -109,6 +110,7 @@ function App() {
     'Kumbh Sans-Medium': require('./assets/fonts/KumbhSans-Medium.ttf'),
     'Kumbh Sans-Regular': require('./assets/fonts/KumbhSans-Regular.ttf'),
     'Kumbh Sans-SemiBold': require('./assets/fonts/KumbhSans-SemiBold.ttf'),
+    'Kumbh Sans-ExtraLight': require('./assets/fonts/KumbhSans-ExtraLight.ttf'),
     'Ubuntu-Regular': require('./assets/fonts/Ubuntu-Regular.ttf'),
     'Ubuntu-RegularItalic': require('./assets/fonts/Ubuntu-Italic.ttf'),
     'Ubuntu-Light': require('./assets/fonts/Ubuntu-Light.ttf'),
@@ -155,6 +157,7 @@ function App() {
               <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={headerOptions} />
               <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={headerOptions} />
+              <Stack.Screen name="DemoScreen" component={DemoScreen} />
             </>
           ) :
             (
