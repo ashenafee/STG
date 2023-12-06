@@ -13,6 +13,7 @@ import LoginScreen from './screens/LoginScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import DemoScreen from './screens/DemoScreen';
+import OptionsScreen from './screens/OptionsScreen';
 
 import { LoginContext, NotifContext } from './contexts/AppContext';
 import HistoryScreen from './screens/HistoryScreen';
@@ -34,7 +35,7 @@ const backHeaderOptions = {
   headerShadowVisible: false,
   headerTransparent: true,
   headerTitle: '',
-  headerTintColor: EStyleSheet.value('$emphTextColor')
+  headerTintColor: '#D31823' // $emphTextColor
 }
 
 SplashScreen.preventAutoHideAsync();
@@ -57,7 +58,7 @@ function MainAppContainer() {
     headerShown: false,
     tabBarShowLabel: false,
     tabBarStyle: {
-      backgroundColor: EStyleSheet.value('$pageBackgroundColor'),
+      backgroundColor: 'white',
       height: '10.57%',
       borderTopWidth: 0,
       elevation: 0,
@@ -120,7 +121,6 @@ function App() {
     'Kumbh Sans-Medium': require('./assets/fonts/KumbhSans-Medium.ttf'),
     'Kumbh Sans-Regular': require('./assets/fonts/KumbhSans-Regular.ttf'),
     'Kumbh Sans-SemiBold': require('./assets/fonts/KumbhSans-SemiBold.ttf'),
-    'Kumbh Sans-ExtraLight': require('./assets/fonts/KumbhSans-ExtraLight.ttf'),
     'Ubuntu-Regular': require('./assets/fonts/Ubuntu-Regular.ttf'),
     'Ubuntu-RegularItalic': require('./assets/fonts/Ubuntu-Italic.ttf'),
     'Ubuntu-Light': require('./assets/fonts/Ubuntu-Light.ttf'),
@@ -161,6 +161,7 @@ function App() {
               <Stack.Screen name="LoginScreen" component={LoginScreen} options={backHeaderOptions} />
               <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={backHeaderOptions} />
               <Stack.Screen name="DemoScreen" component={DemoScreen} />
+              <Stack.Screen name="OptionsScreen" component={OptionsScreen} />
             </>
           ) :
             (
